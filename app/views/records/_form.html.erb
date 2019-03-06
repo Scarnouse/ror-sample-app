@@ -1,0 +1,19 @@
+<%= form_for(@record) do |form| %>
+  <% if @record.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@record.errors.count, "error") %> prohibited this record from being saved:</h2>
+
+      <ul>
+      <% @record.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <p>Author: <%= form.text_field :author %></p>
+  <p>Name: <%= form.text_field :name %></p>
+  <p>Year: <%= form.text_field :year %></p>
+  <p>Tracks: <%= form.text_field :tracks %></p>
+
+  <%= form.submit %>
+<% end %>

@@ -1,0 +1,32 @@
+<% provide(:title, "Record List") %>
+<h1>Records list</h1>
+
+<div class="pull-right">
+  <p><%= link_to "Add Record", new_record_path, :class => "btn btn-success"  %></p>
+</div>
+
+<table class="table table-striped" summary="Records List">
+  <tr class="header">
+    <th>Author</th>
+    <th>Name</th>
+    <th>Year</th>
+    <th>Tracks</th> 
+    <th></th>
+  </tr>
+
+  <% if @records %>
+    <% @records.each do |record| %>
+      <tr>
+        <td><%= record.author %></td>
+        <td><%= record.name %></td>
+        <td><%= record.year %></td>
+        <td><%= record.tracks %></td>
+        <td>
+          <%= link_to "Detail", record_path({id: record.id}), :class => "btn btn-primary" %>
+          <%= link_to "Edit", edit_record_path({id: record.id}), :class => "btn btn-primary" %>
+          <%= link_to "Delete", record_path({id: record.id}), :method => "delete", :class => "btn btn-primary" %>
+        </td>
+      <tr>
+    <% end %>
+  <% end %>
+</table>
