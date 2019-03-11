@@ -1,11 +1,13 @@
 class RecordsController < ApplicationController
+
+  before_action :get_record, only: [:show, :edit, :update, :destroy] 
+
   def index
-    @records = Record.where user_id: current_user.id
+    @records = Record.find_by_user(current_user.id)
   end
 
   def show
-    @record = Record.find(params[:id])
-    #render plain: @record.inspect
+
   end
 
   def new
@@ -13,8 +15,7 @@ class RecordsController < ApplicationController
   end
 
   def create
-    @record = Record.new(record_params)
-    @record.user_id = current_user.id
+    @record = current_user.records.new(record_params)
 
     if(@record.save)
       redirect_to records_path
@@ -24,11 +25,10 @@ class RecordsController < ApplicationController
   end
 
   def edit
-    @record = Record.find(params[:id])
+
   end
 
   def update
-    @record = Record.find(params[:id])
     if(@record.update_attributes(record_params))
       redirect_to records_path
     else
@@ -37,8 +37,6 @@ class RecordsController < ApplicationController
   end
 
   def destroy
-    @record = Record.find(params[:id])
-
     if(@record.destroy)
       redirect_to records_path
     end
@@ -47,5 +45,9 @@ class RecordsController < ApplicationController
   private
   def record_params
     params.require(:record).permit(:author, :name, :year, :tracks)
+  end
+
+  def get_record
+    @record = Record.find(params[:id])
   end
 end
