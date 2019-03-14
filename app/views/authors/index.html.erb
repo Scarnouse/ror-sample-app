@@ -1,0 +1,29 @@
+<% provide(:title, "Author List") %>
+<h1>Author list</h1>
+
+<div class="pull-right">
+  <p><%= link_to "Add Author", new_author_path, :class => "btn btn-success"  %></p>
+</div>
+
+<table class="table table-striped" summary="Records List">
+  <tr class="header">
+    <th>Name</th>
+    <th>Records</th>
+    <th></th>
+  </tr>
+
+  <% if @authors %>
+    <% @authors.each do |author| %>
+      <tr>
+        <td><%= author.name %></td>
+        <td><%= author.records.length %></td>
+        <td>
+          <%= link_to "Detail", author_path({id: author.id}), :class => "btn btn-primary" %>
+          <%= link_to "Edit", edit_author_path({id: author.id}), :class => "btn btn-primary" %>
+          <%= link_to "Delete", author_path({id: author.id}), :method => "delete", :class => "btn btn-primary" %>
+        </td>
+      <tr>
+    <% end %>
+  <% end %>
+</table>
+
