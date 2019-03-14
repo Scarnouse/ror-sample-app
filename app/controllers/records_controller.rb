@@ -1,6 +1,6 @@
 class RecordsController < ApplicationController
 
-  before_action :get_record, only: [:show, :edit, :update, :destroy] 
+  before_action :get_record, only: [:show, :edit, :update, :destroy]
 
   def index
     @records = Record.find_by_user(current_user.id)
@@ -44,7 +44,7 @@ class RecordsController < ApplicationController
 
   private
   def record_params
-    params.require(:record).permit(:author, :name, :year, :tracks)
+    params.require(:record).permit(:author_id, :name, :year, :tracks)
   end
 
   def get_record

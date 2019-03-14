@@ -5,7 +5,6 @@
   <%= link_to 'Edit', edit_record_path(@record), :class => "btn btn-primary" %>
 </div>
 
-
-<p><b>Author:</b> <%= @record.author %></p>
+<p><b>Author:</b> <%=@record.author.name %></p>
 <p><b>Year:</b> <%= @record.year %></p>
 <p><b>Tracks:</b> <%= @record.tracks %></p>

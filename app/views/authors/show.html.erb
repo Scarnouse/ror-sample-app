@@ -1,23 +1,23 @@
-<% provide(:title, "Record List") %>
-<h1>Records list</h1>
+<% provide(:title, "Detail Author") %>
+<h1><%= @author.name %></h1>
 
 <div class="pull-right">
-  <p><%= link_to "Add Record", new_record_path, :class => "btn btn-success"  %></p>
+  <%= link_to 'Edit', edit_author_path(@author), :class => "btn btn-primary" %>
 </div>
 
-<table class="table table-striped" summary="Records List">
+<p><b>Records:</b> <%=@author.records.length %></p>
+
+<table class="table table-striped" summary="Author Records List">
   <tr class="header">
-    <th>Author</th>
     <th>Name</th>
     <th>Year</th>
     <th>Tracks</th> 
     <th></th>
   </tr>
 
-  <% if @records %>
-    <% @records.each do |record| %>
+  <% if @author.records %>
+    <% @author.records.each do |record| %>
       <tr>
-        <td><%= record.author.name %></td>
         <td><%= record.name %></td>
         <td><%= record.year %></td>
         <td><%= record.tracks %></td>
