@@ -3,8 +3,31 @@
 
 <div class="pull-right">
   <%= link_to 'Edit', edit_record_path(@record), :class => "btn btn-primary" %>
+  <%= link_to 'Add Song', new_record_song_path(@record.id), :class => "btn btn-primary" %>
 </div>
 
 <p><b>Author:</b> <%=@record.author.name %></p>
 <p><b>Year:</b> <%= @record.year %></p>
-<p><b>Tracks:</b> <%= @record.tracks %></p>
+<p><b>Tracks:</b> <%= @record.songs.length %></p>
+
+<% if @record.songs %>
+  <table class="table table-striped" summary="Song List">
+    <tr class="header">
+      <th>Track Number</th>
+      <th>Name</th>
+      <th>Duration</th>
+      <th></th>
+    </tr>
+    <% @record.songs.each do |song| %>
+    <tr>
+      <td><%= song.track_number %></td>
+      <td><%= song.name %></td>
+      <td><%= song.duration %></td>
+      <td>
+        <%= link_to "Edit", edit_record_song_path({id: song.id, record_id: @record.id}), :class => "btn btn-primary" %>
+        <%= link_to "Delete", record_song_path({id: song.id, record_id: @record.id}), :method => "delete", :class => "btn btn-primary" %>
+      </td>
+    </tr>
+  <% end %>
+  </table>
+<% end %>

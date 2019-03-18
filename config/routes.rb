@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { sessions: 'user/sessions' }
-  resources :records, :authors
+  resources :records do
+    resources :songs
+  end
+  resources :authors
   
   root to: 'static_pages#home'
   get '/help', to: 'static_pages#help'

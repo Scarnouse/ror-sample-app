@@ -20,13 +20,13 @@
         <td><%= record.author.name %></td>
         <td><%= record.name %></td>
         <td><%= record.year %></td>
-        <td><%= record.tracks %></td>
+        <td><%= record.songs.length %></td>
         <td>
           <%= link_to "Detail", record_path({id: record.id}), :class => "btn btn-primary" %>
           <%= link_to "Edit", edit_record_path({id: record.id}), :class => "btn btn-primary" %>
           <%= link_to "Delete", record_path({id: record.id}), :method => "delete", :class => "btn btn-primary" %>
         </td>
-      <tr>
+      </tr>
     <% end %>
   <% end %>
 </table>
