@@ -1,7 +1,7 @@
 class Song < ApplicationRecord
   belongs_to :record
 
-  has_many :song_credits
+  has_many :song_credits, dependent: :delete_all
   has_many :players, :through => :song_credits
 
   validates :name, presence: true, allow_blank: false
