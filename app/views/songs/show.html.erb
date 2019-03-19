@@ -1,2 +1,32 @@
-<h1>Songs#show</h1>
-<p>Find me in app/views/songs/show.html.erb</p>
+<% provide(:title, "Detail Song") %>
+<h1><%= @song.name %></h1>
+
+<div class="pull-right">
+  <%= link_to "Edit", edit_record_song_path({id: @song.id, record_id: @record.id}), :class => "btn btn-primary" %>
+  <%= link_to 'Add Credit', new_record_song_song_credit_path({record_id: @record.id, song_id: @song.id}), :class => "btn btn-primary" %>
+</div>
+
+<p><b>Author:</b> <%=@record.author.name %></p>
+<p><b>Record Name:</b> <%=@record.name %></p>
+<p><b>Year:</b> <%= @record.year %></p>
+<p><b>Track:</b> <%= @song.track_number %></p>
+
+<% if @song.song_credits %>
+  <table class="table table-striped" summary="Song Credit List">
+    <tr class="header">
+      <th>Player</th>
+      <th>Description</th>
+      <th></th>
+    </tr>
+    <% @song.song_credits.each do |credit| %>
+    <tr>
+      <td><%= credit.player.name %></td>
+      <td><%= credit.description %></td>
+      <td>
+        <%= link_to "Edit", edit_record_song_song_credit_path({id: credit.id, record_id: @record.id, song_id: @song.id}), :class => "btn btn-primary" %>
+        <%= link_to "Delete", record_song_song_credit_path({id: credit.id, record_id: @record.id, song_id: @song.id}), :method => "delete", :class => "btn btn-primary" %>
+      </td>
+    </tr>
+  <% end %>
+  </table>
+<% end %>
