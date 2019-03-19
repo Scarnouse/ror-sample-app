@@ -6,4 +6,5 @@ class User < ApplicationRecord
   
   has_many :records
   has_many :authors
+  has_many :players
 end

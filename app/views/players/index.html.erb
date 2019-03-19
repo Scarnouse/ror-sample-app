@@ -1,0 +1,29 @@
+<% provide(:title, "Player List") %>
+<h1>Player list</h1>
+
+<div class="pull-right">
+  <p><%= link_to "Add Player", new_player_path, :class => "btn btn-success"  %></p>
+</div>
+
+<table class="table table-striped" summary="Records List">
+  <tr class="header">
+    <th>Name</th>
+    <th>Number of Occurrence in Credits</th> 
+    <th></th>
+  </tr>
+
+  <% if @players %>
+    <% @players.each do |player| %>
+      <tr>
+        <td><%= player.name %>
+        <td><%= player.song_credits.length%></td>
+        <td>
+          <%= link_to "Detail", player_path({id: player.id}), :class => "btn btn-primary" %>
+          <%= link_to "Edit", edit_player_path({id: player.id}), :class => "btn btn-primary" %>
+          <%= link_to "Delete", player_path({id: player.id}), :method => "delete", :class => "btn btn-primary" %>
+        </td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>
+

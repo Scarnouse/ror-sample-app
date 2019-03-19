@@ -1,0 +1,30 @@
+
+<% provide(:title, "Detail Player") %>
+<h1><%= @player.name %></h1>
+
+<div class="pull-right">
+  <%= link_to 'Edit', edit_player_path(@player), :class => "btn btn-primary" %>
+</div>
+
+<% if @player.song_credits %>
+  <table class="table table-striped" summary="Song Credits List">
+    <tr class="header">
+      <th>Record name</th>
+      <th>Year</th>
+      <th>Track Number</th>
+      <th>Name</th>
+      <th>Duration</th>
+      <th>Description</th>
+    </tr>
+    <% @player.song_credits.each do |credit| %>
+    <tr>
+      <td><%= credit.song.record.name %></td>
+      <td><%= credit.song.record.year %></td>
+      <td><%= credit.song.track_number %></td>
+      <td><%= credit.song.name %></td>
+      <td><%= credit.song.duration %></td>
+      <td><%= credit.description %></td>
+    </tr>
+  <% end %>
+  </table>
+<% end %>

@@ -1,0 +1,2 @@
+module SongCreditsHelper
+end

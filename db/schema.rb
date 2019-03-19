@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_18_105149) do
+ActiveRecord::Schema.define(version: 2019_03_19_092612) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,14 @@ ActiveRecord::Schema.define(version: 2019_03_18_105149) do
     t.index ["user_id"], name: "index_authors_on_user_id"
   end
 
+  create_table "players", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_players_on_user_id"
+  end
+
   create_table "records", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -32,6 +40,16 @@ ActiveRecord::Schema.define(version: 2019_03_18_105149) do
     t.bigint "author_id"
     t.index ["author_id"], name: "index_records_on_author_id"
     t.index ["user_id"], name: "index_records_on_user_id"
+  end
+
+  create_table "song_credits", force: :cascade do |t|
+    t.bigint "song_id"
+    t.bigint "player_id"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["player_id"], name: "index_song_credits_on_player_id"
+    t.index ["song_id"], name: "index_song_credits_on_song_id"
   end
 
   create_table "songs", force: :cascade do |t|
@@ -57,6 +75,7 @@ ActiveRecord::Schema.define(version: 2019_03_18_105149) do
   end
 
   add_foreign_key "authors", "users"
+  add_foreign_key "players", "users"
   add_foreign_key "records", "authors"
   add_foreign_key "records", "users"
   add_foreign_key "songs", "records"

@@ -1,7 +1,7 @@
 class SongsController < ApplicationController
 
-  before_action :get_record, only: [:new, :create, :edit, :update, :destroy]
-  before_action :get_song, only: [:edit, :update, :destroy]
+  before_action :get_record, only: [:show, :new, :create, :edit, :update, :destroy]
+  before_action :get_song, only: [:show, :edit, :update, :destroy]
   
   def index
   end
