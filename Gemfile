@@ -11,6 +11,7 @@ gem 'turbolinks', '5.0.0'
 gem 'jbuilder', '~> 2.5'
 gem 'devise'
 gem 'dynamic_form'
+gem 'rails_admin', '~> 1.3'
 
 group :development, :test do
   gem 'pg', '0.18.4'
