@@ -6,11 +6,12 @@ gem 'puma', '3.12.0'
 gem 'sass-rails', '5.0.5'
 gem 'uglifier', '3.0.0'
 gem 'coffee-rails', '4.2.2'
-gem 'jquery-rails', '4.1.1'
+gem 'jquery-rails', '~> 4.2'
 gem 'turbolinks', '5.0.0'
 gem 'jbuilder', '~> 2.5'
 gem 'devise'
 gem 'dynamic_form'
+gem 'activeadmin', github: 'gregbell/active_admin'
 
 group :development, :test do
   gem 'pg', '0.18.4'
